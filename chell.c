@@ -33,9 +33,11 @@ int main(){
             args[index++] = token;
             token = strtok(NULL, " \n");
         }
-        for(int i = 0; args[i] != NULL; i++){
-            printf("args[%d]: %s \n", i, args[i]);
-        }
+
+        //Use for debugging
+        //for(int i = 0; args[i] != NULL; i++){
+        //    printf("args[%d]: %s \n", i, args[i]);
+        //}
         args[index] = NULL;
 
         pid_t pid = fork();
@@ -47,10 +49,10 @@ int main(){
             wait(NULL);
         }    
 
-        //debugging 
-        printf("value: %s \n", userin);
-        printf("address: %p \n", &userin);
-        printf("Bytes used: %d\n", sizeof(userin));
+        //Use this for debugging 
+        //printf("value: %s \n", userin);
+        //printf("address: %p \n", &userin);
+        //printf("Bytes used: %d\n", sizeof(userin));
     }
 
     return 0;
