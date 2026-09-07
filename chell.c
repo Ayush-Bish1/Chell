@@ -22,10 +22,15 @@ int main(){
 
         if(userin[0] == '\0'){
             continue;
-        } else if(strcspn(userin, "exit") == 0){
+        } else if(userin[0] == 'e' &&
+                  userin[1] == 'x' &&
+                  userin[2] == 'i' &&
+                  userin[3] == 't' &&
+                  (userin[4] == '\0' || userin[4] == '\n')){
             printf("exiting..\n");
             break;
         }
+    
  
         token = strtok(userin, " \n");
             //Putting data from userin to args
@@ -53,7 +58,7 @@ int main(){
         //printf("value: %s \n", userin);
         //printf("address: %p \n", &userin);
         //printf("Bytes used: %d\n", sizeof(userin));
-    }
+        }
 
     return 0;
 }
