@@ -9,6 +9,7 @@ int main(){
     char userin[1024];
     char *args[64];
     char *token;
+    int run = 0;
 
     printf("Welcome to Chell(shell)\n");
 
@@ -50,6 +51,7 @@ int main(){
         if(pid == 0){
             execvp(args[0], args);
             perror("failed");
+            exit(1);
         } else{
             wait(NULL);
         }    
