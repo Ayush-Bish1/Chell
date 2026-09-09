@@ -3,7 +3,27 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <time.h>
 #include "debug.h"
+
+//To get the art for the banner of Chell
+void art(char *file){
+    FILE *path = fopen(file, "r"); 
+    
+    if(!path){
+        perror("Coudlnt Open The file \n");
+        return;
+    }
+
+    char cha;
+    while ((cha = fgetc(path)) != EOF){
+        putchar(cha);
+    }
+
+    fclose(path);
+
+}
+
 
 int main(){
 
@@ -12,6 +32,19 @@ int main(){
     char *token;
     int run = 0;
     int deb = 1;
+    int random;
+
+    //random ascii
+    srand(time(NULL));
+    random = (rand() % 3) + 1;
+    
+    if(random == 1){
+        art("assets/asci1.txt");
+    } else if(random == 2){
+        art("assets/asci2.txt");
+    } else{
+        art("assets/asci3.txt");
+    }
 
     printf("Welcome to Chell(shell)\n");
 
@@ -53,7 +86,7 @@ int main(){
         } else{
             wait(NULL);
         } 
-           
+
         //debugging(args, userin);
 
         }
