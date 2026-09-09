@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include "debug.h"
 
 int main(){
 
@@ -10,12 +11,13 @@ int main(){
     char *args[64];
     char *token;
     int run = 0;
+    int deb = 1;
 
     printf("Welcome to Chell(shell)\n");
 
     //main loop
     while(1==1){
-        int index = 0;
+        int i = 0;
         printf("Chell/archbtw > ");
         fgets(userin, sizeof(userin), stdin);
 
@@ -35,16 +37,12 @@ int main(){
  
         token = strtok(userin, " \n");
             //Putting data from userin to args
-        while(token != NULL && index < 63){
-            args[index++] = token;
+        while(token != NULL && i < 63){
+            args[i++] = token;
             token = strtok(NULL, " \n");
         }
 
-        //Use for debugging
-        //for(int i = 0; args[i] != NULL; i++){
-        //    printf("args[%d]: %s \n", i, args[i]);
-        //}
-        args[index] = NULL;
+        args[i] = NULL;
 
         pid_t pid = fork();
         //child process
@@ -54,12 +52,10 @@ int main(){
             exit(1);
         } else{
             wait(NULL);
-        }    
+        } 
+           
+        //debugging(args, userin);
 
-        //Use this for debugging 
-        //printf("value: %s \n", userin);
-        //printf("address: %p \n", &userin);
-        //printf("Bytes used: %d\n", sizeof(userin));
         }
 
     return 0;
